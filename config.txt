@@ -1,0 +1,8 @@
+defaultAmount=100000
+defaultInterest=12
+defaultPeriod=360
+defaultPeriodElapsed=12
+defaultPayment=1028.61
+defaultInitialPayment=0
+defaultFee=0
+defaultFeePercent=0
