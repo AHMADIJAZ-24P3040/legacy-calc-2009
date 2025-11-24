@@ -1,8 +1,17 @@
-*.[oa]
-*~
-*.mk
+#Build artifacts
+calc
+*.o
+*.obj
+*.exe
+ECHO is on.
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+ECHO is on.
+# GoogleTest build artifacts
 build/
-nbproject/
-.sconsign.dblite
-loanCalculator
-moc*.cc
+ECHO is on.
+# Doxygen output
+docs/
