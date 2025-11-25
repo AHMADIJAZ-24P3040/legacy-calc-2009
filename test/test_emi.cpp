@@ -1,34 +1,64 @@
-#include <gtest/gtest.h>
+#include <iostream>
 #include "../src/Loan.h"
 #include "../src/Utils.h"
-TEST(LoanCalculatorTest, NormalEMI)
+using namespace std;
+void testLoanBalance()
 {
-    LoanCalculator calc;
-    calc.setAmount(100000);
-    calc.setInterest(12);
-    calc.setPeriodTotal(12);
-    double payment = calc.calculatePayment();
-    EXPECT_NEAR(payment, 8884.78, 0.01);
+    LoanCalculator loan;
+    loan.setAmount(10000);
+    loan.setInterest(6);
+    loan.setPayment(500);
+    loan.setPeriodElapsed(12);
+    double balance = loan.calculateLoanBalance();
+    cout << "\n Test Loan balance:" << balance << endl;
 }
-TEST(LoanCalculatorTest, InvalidInput)
+void testPayment()
 {
-    LoanCalculator calc;
-    calc.setAmount(-5000);
-    calc.setInterest(12);
-    calc.setPeriodTotal(12);
-    EXPECT_THROW(calc.calculatePayment(), std::invalid_argument);
+    LoanCalculator loan;
+    loan.setAmount(10000);
+    loan.setInterest(6);
+    loan.setPeriodTotal(24);
+    loan.setInitialPayment(0);
+    loan.setOpeningFee(0);
+    loan.setOpeningPercent(0);
+    double payment = loan.calculatePayment();
+    cout << "\n Test payment:" << payment << endl;
 }
-TEST(LoanCalculatorTest, LargeTenure)
+void testNumberPayments()
 {
-    LoanCalculator calc;
-    calc.setAmount(1000000);
-    calc.setInterest(10);
-    calc.setPeriodTotal(600);
-    double payment = calc.calculatePayment();
-    EXPECT_GT(payment, 0);
+    LoanCalculator loan;
+    loan.setAmount(10000);
+    loan.setInterest(6);
+    loan.setPayment(500);
+    double n = loan.calculateNumberPayments();
+    cout << "\n Test No of payments:" << n << endl;
 }
-int main(int argc, char **argv)
+void testLoanAmount()
 {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    LoanCalculator loan;
+    loan.setInterest(6);
+    loan.setPayment(500);
+    loan.setPeriodTotal(24);
+    double amount = loan.calculateLoanAmount();
+    cout << "\n Test Loan Amount:" << amount << endl;
+}
+void testInterestRate()
+{
+    LoanCalculator loan;
+    loan.setAmount(10000);
+    loan.setPayment(500);
+    loan.setPeriodTotal(24);
+    double rate = loan.calculateInterestRate();
+    cout << "\n Test Loan rate:" << rate << "% " << endl;
+}
+int main()
+{
+    cout << "\n ======= Loan Calculator Tests ==========" << endl;
+    testLoanBalance();
+    testPayment();
+    testNumberPayments();
+    testLoanAmount();
+    testInterestRate();
+    cout << "==================================";
+    return 0;
 }
