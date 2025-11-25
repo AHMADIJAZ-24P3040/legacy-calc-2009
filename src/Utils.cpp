@@ -3,6 +3,14 @@
 #include <sstream>
 #include <stdexcept>
 using namespace std;
+/**
+ * @brief reads configuration from a file.
+ * Opens the given file,  checks line is key=value ways
+ * returns a map of strings keys and double values
+ * @param filename Name of the configutation file
+ * @return map of configuration keys and values
+ * @throws runtime_error if file cannot be opened
+ */
 map<string, double> readConfig(const string &filename)
 {
     ifstream file(filename);

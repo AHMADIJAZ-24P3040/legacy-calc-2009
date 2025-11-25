@@ -1,3 +1,14 @@
+/**
+ * @file Loan.h
+ * @brief contains the LoanCalculator class for loan calculations
+ * Procides methods:
+ *  1. Loan balance
+ *  2. Payement amount
+ *  3. Number of payment
+ *  4. Original loan amount
+ *  5. Intertest rate
+ *  6. Effective itnerest rate with fees
+ */
 #ifndef LOANCALCULATOR_H_INCLUDED
 #define LOANCALCULATOR_H_INCLUDED
 
@@ -39,11 +50,18 @@ P   	the amount of each equal payment
 */
 
 #include <string>
-
+/**
+ * @class LoanCalculator
+ * @brief Calcualtes loan raleted tasks
+ */
 class LoanCalculator
 {
-public:
-  LoanCalculator();
+public:             /**
+                     * @brief Default constructs
+                     */
+  LoanCalculator(); /**
+                     * @brief Destructor
+                     */
   ~LoanCalculator() {}
 
   //
@@ -53,6 +71,9 @@ public:
   /**
    * Total loan amount A
    */
+  /**
+   * @brief sets the amount for A<=0
+   */
   inline void setAmount(double A)
   {
     if (A <= 0)
@@ -61,13 +82,20 @@ public:
     }
     amount_ = A;
     amountSet_ = true;
-  }
+  } /**
+     * @brief gets us the amount
+     */
   inline double getAmount() const { return amount_; }
 
   /**
    * Initial down payment
    */
-  inline void setInitialPayment(float initialA) { initialPayment_ = initialA; }
+  /**
+   * @brief sets the intial down payment
+   */
+  inline void setInitialPayment(float initialA) { initialPayment_ = initialA; } /**
+                                                                                 * @brief gets intital down payment
+                                                                                 */
   inline double getInitialPayment() const { return initialPayment_; }
 
   /**
@@ -76,6 +104,9 @@ public:
    * If 6.75 is passed to setInterest()
    *    getInterest() will return 6.75
    *    getPeriodicInterest() will return .0675/12.0
+   */
+  /**
+   * @brief sets yearly interest rate
    */
   void setInterest(double i)
   {
@@ -86,10 +117,14 @@ public:
     interest_ = i;
     interestPeriodic_ = i / 100.0 / 12.0;
     interestSet_ = true;
-  }
+  } /**
+     * @brief gives the yearly interest rate when needed
+     */
   inline double getInterest() const { return interest_; }
   inline double getPeriodicInterest() const { return interestPeriodic_; }
-
+  /**
+   * @brief sets the monthly payment throws if <=0
+   */
   void setPayment(double P)
   {
     if (P <= 0)
@@ -98,9 +133,13 @@ public:
     }
     payment_ = P;
     paymentSet_ = true;
-  }
+  } /**
+     * @brief Gets the monthly payment
+     */
   inline double getPayment() const { return payment_; }
-
+  /**
+   * @brief Sets the total number of periods
+   */
   void setPeriodTotal(int N)
   {
     if (N <= 0)
@@ -109,15 +148,22 @@ public:
     }
     periodTotal_ = N;
     periodTotalSet_ = true;
-  }
+  } /**
+     * @brief Gets the total numebr of periods
+     */
   inline int getPeriodTotal() const { return periodTotal_; }
-
+  /**
+   * @brief Sets the elapsed time
+   */
   void setPeriodElapsed(int n)
   {
 
     periodElapsed_ = n;
     periodElapsedSet_ = true;
   }
+  /**
+   * @brief Calcualtes loan raleted tasks
+   */
   inline int getPeriodElapsed() const { return periodElapsed_; }
 
   inline void setOpeningFee(float fee) { openingFee_ = fee; }
@@ -136,11 +182,25 @@ public:
   //
   // The actual calculation methods
   //
-
+  /**
+   * @brief calculates the loan balance
+   */
   double calculateLoanBalance();
+  /**
+   * @brief calcualtes the payemnt
+   */
   double calculatePayment();
+  /**
+   * @brief calculates no of payments
+   */
   double calculateNumberPayments();
+  /**
+   * @brief calculates the loan amount
+   */
   double calculateLoanAmount();
+  /**
+   * @brief calculates itnerest rate
+   */
   double calculateInterestRate();
   // The effective interest rate, once fees have been applied
   double calculateEffectiveInterestRate();

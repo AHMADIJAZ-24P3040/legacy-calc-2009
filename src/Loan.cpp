@@ -29,6 +29,12 @@ LoanCalculator::LoanCalculator() : amountSet_(false),
  * Loan balance after n payments have been made:
  *   B_n = A*(1+i)^n - (P/i)*((1+i)^n - 1)
  */
+/**
+ * @brief Calcualtes remaining loan balance after elapsed periods.
+ * Using some defined formula
+ * @return remainng loan balance
+ * @throws invalid_argument if required values ar enot set
+ */
 double LoanCalculator::calculateLoanBalance()
 {
   if (!amountSet_ || !interestSet_ || !periodElapsedSet_ || !paymentSet_)
@@ -43,6 +49,12 @@ double LoanCalculator::calculateLoanBalance()
 /**
  * Payment amount on a loan:
  *   P = i*A / (1 - (1+i)^-N)
+ */
+/**
+ * @brief Calculates monthly payment
+ * Using some formula calculates it
+ * @return Monthly payments
+ * @throws invalid_argument if required values are not ste
  */
 double LoanCalculator::calculatePayment()
 {
